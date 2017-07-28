@@ -17,7 +17,7 @@ function Trie () {
 Trie.prototype.create = function (route) {
   assert.equal(typeof route, 'string', 'route should be a string')
   // strip leading '/' and split routes
-  var routes = route.replace(/^\//, '').split('/')
+  var routes = route.replace(/^\//, '').replace(/\/$/, '').split('/')
 
   function createNode (index, trie) {
     var thisRoute = (routes.hasOwnProperty(index) && routes[index])
@@ -58,7 +58,7 @@ Trie.prototype.create = function (route) {
 Trie.prototype.match = function (route) {
   assert.equal(typeof route, 'string', 'route should be a string')
 
-  var routes = route.replace(/^\//, '').split('/')
+  var routes = route.replace(/^\//, '').replace(/\/$/, '').split('/')
   var params = {}
 
   function search (index, trie) {

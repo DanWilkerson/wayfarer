@@ -30,6 +30,15 @@ tape('trie', function (t) {
     r('/nope')
   })
 
+  t.test('should match paths with/without trailing slash', function (t) {
+    t.plan(1)
+    var r = wayfarer('/test/')
+    r.on('/test', function () {
+      t.pass('trailing slash')
+    })
+    r('/test/')
+  })
+
   t.test('should allow passing of extra values', function (t) {
     t.plan(2)
     var foo = {}
